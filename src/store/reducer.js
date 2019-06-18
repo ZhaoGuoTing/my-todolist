@@ -10,7 +10,14 @@ const defaultState = {
   ],
 }
 
+// reducer 可以接受 state， 但是绝不能修改state
 export default (state = defaultState, action) => {
+  if (action.type === 'change_input_value') {
+    const newState = JSON.parse(JSON.stringify(state));
+    newState.inputValue = action.value;
+    return newState;
+  }
+  // console.log(state, action);
   return state;
 }
 // state 是整个图书馆的数据
