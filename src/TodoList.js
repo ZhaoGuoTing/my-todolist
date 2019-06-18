@@ -22,6 +22,8 @@ export class TodoList extends Component {
       <div style={{marginTop: '10px',marginLeft: '10px'}}>
         <h1>Hello World</h1>
         <Input 
+          placeholder = "请输入"
+          value={this.state.inputValue} 
           style={{width: '300px',marginRight: '10px'}}
           onChange={this._onChangeInput}
         />
