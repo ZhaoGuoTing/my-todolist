@@ -1,12 +1,9 @@
 const defaultState = {
   // data: []
-  inputValue: '请输入',
+  inputValue: '',
   list: [
     'Racing car sprays burning fuel into crowd.',
     'Japanese princess to wed commoner.',
-    'Australian walks 100km after outback crash.',
-    'Man charged over missing wedding girl.',
-    'Los Angeles battles huge wildfires.',
   ],
 }
 
@@ -17,7 +14,12 @@ export default (state = defaultState, action) => {
     newState.inputValue = action.value;
     return newState;
   }
-  // console.log(state, action);
+  if (action.type === 'add_todo_Item') {
+    const newState = JSON.parse(JSON.stringify(state));
+    newState.list.push(newState.inputValue);
+    newState.inputValue = '';
+    return newState;
+  }
   return state;
 }
 // state 是整个图书馆的数据

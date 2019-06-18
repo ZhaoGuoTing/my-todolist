@@ -11,6 +11,7 @@ export class TodoList extends Component {
 
     this.state = store.getState();
     this._onChangeInput = this._onChangeInput.bind(this);
+    this._onClickBtn = this._onClickBtn.bind(this);
     this._StoreChange = this._StoreChange.bind(this);
     store.subscribe(this._StoreChange)
   }
@@ -21,12 +22,12 @@ export class TodoList extends Component {
       <div style={{marginTop: '10px',marginLeft: '10px'}}>
         <h1>Hello World</h1>
         <Input 
-          placeholder="Basic usage" 
+          placeholder = "请输入"
           value={this.state.inputValue} 
           style={{width: '300px',marginRight: '10px'}}
           onChange={this._onChangeInput}
         />
-        <Button type="primary">提交</Button>
+        <Button type="primary" onClick={this._onClickBtn}>提交</Button>
         <List
           style={{marginTop: '10px', width: '300px'}}
           bordered
@@ -45,7 +46,12 @@ export class TodoList extends Component {
   }
   _StoreChange() {
     this.setState(store.getState())
-    // console.log('store changed');
+  }
+  _onClickBtn() {
+    const action = {
+      type: "add_todo_Item",
+    }
+    store.dispatch(action);
   }
 }
 
