@@ -8,6 +8,8 @@ const defaultState = {
 }
 
 // reducer 可以接受 state， 但是绝不能修改state
+// state = defaultState,是图书馆的默认旧数据、
+// action 是借书人的那句话
 export default (state = defaultState, action) => {
   if (action.type === 'change_input_value') {
     const newState = JSON.parse(JSON.stringify(state));
@@ -22,5 +24,3 @@ export default (state = defaultState, action) => {
   }
   return state;
 }
-// state 是整个图书馆的数据
-// action 是借书人的那句话
