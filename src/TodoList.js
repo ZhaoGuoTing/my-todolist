@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import 'antd/dist/antd.css'
-import { Input, Button, List } from 'antd';
 import store from './store';
+import TodoListUI from './TodoListUI';
 
 export class TodoList extends Component {
 
@@ -14,6 +14,7 @@ export class TodoList extends Component {
     
     this._onChangeInput = this._onChangeInput.bind(this);
     this._onClickBtn = this._onClickBtn.bind(this);
+    this._onClickListItemDel = this._onClickListItemDel.bind(this);
   }
   _StoreChange() { // 当数据改变是 执行该函数
     this.setState(store.getState()) // 获取 新数据内容
@@ -21,24 +22,14 @@ export class TodoList extends Component {
 
     render() {
         return (
-        <div style={{marginTop: '10px',marginLeft: '10px'}}>
-            <h1>Hello World</h1>
-            <Input 
-                placeholder = "请输入"
-                value={this.state.inputValue} 
-                style={{width: '300px',marginRight: '10px'}}
-                onChange={this._onChangeInput}
-            />
-            <Button type="primary" onClick={this._onClickBtn}>提交</Button>
-            <List
-                style={{marginTop: '10px', width: '300px'}}
-                bordered
-                dataSource={this.state.list}
-                renderItem={(item, index) => 
-                    <List.Item onClick={this._onClickListItemDel.bind(this, index)}>{item}</List.Item>
-                }
-            />
-        </div>
+          <TodoListUI 
+            inputValue={this.state.inputValue}
+            list={this.state.list}
+            _onChangeInput={this._onChangeInput}
+            _onClickBtn={this._onClickBtn}
+            _onClickListItemDel={this._onClickListItemDel}
+
+          />
         )
     }
 
