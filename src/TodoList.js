@@ -10,10 +10,12 @@ export class TodoList extends Component {
     super(props)
 
     this.state = store.getState();
-    this._onChangeInput = this._onChangeInput.bind(this);
-    this._onClickBtn = this._onClickBtn.bind(this);
     this._StoreChange = this._StoreChange.bind(this);
     store.subscribe(this._StoreChange)
+
+    
+    this._onChangeInput = this._onChangeInput.bind(this);
+    this._onClickBtn = this._onClickBtn.bind(this);
   }
   
 
@@ -37,6 +39,11 @@ export class TodoList extends Component {
       </div>
     )
   }
+  _StoreChange() {
+    this.setState(store.getState())
+  }
+
+
   _onChangeInput(e) {
     const action = {
       type: "change_input_value",
@@ -44,9 +51,7 @@ export class TodoList extends Component {
     }
     store.dispatch(action);
   }
-  _StoreChange() {
-    this.setState(store.getState())
-  }
+  
   _onClickBtn() {
     const action = {
       type: "add_todo_Item",
